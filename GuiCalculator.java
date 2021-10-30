@@ -57,8 +57,7 @@ class CalculatorUI extends JFrame
 				
 				if(source==bt43)
 				{
-					//str=str+"= "+CalcString.getRes(str);
-					str=str+3;
+					str=str+"= "+CalcString.getRes(str);
 					textField.setText(str);
 					
 					int res=JOptionPane.showConfirmDialog(panel, "Calculated, Goon ?", "",JOptionPane.YES_NO_OPTION);
@@ -111,4 +110,46 @@ class CalculatorUI extends JFrame
 			jb[i].addActionListener(myHandler);
 		}
 	}	
+}
+class CalcString
+{
+	public static double getRes(String str)
+	{
+		String s="";
+		double n1 = 0,n2,res = 0;
+		char op = 0;
+		
+		for(int i=0;i<str.length();i++)
+		{
+			if(str.charAt(i)!='+'&&str.charAt(i)!='-'&&str.charAt(i)!='*'&&str.charAt(i)!='/')
+			{
+				s=s+str.charAt(i);
+			}
+			else
+			{
+				n1=Double.parseDouble(s);
+				op=str.charAt(i);
+				s="";
+			}
+		}
+		n2=Double.parseDouble(s);
+		
+		switch (op) {
+		case '+':
+			res = n1 + n2;
+			break;
+		case '-':
+			res = n1 - n2;
+			break;
+		case '*':
+			res = n1 * n2;
+			break;
+		case '/':
+			res = n1 / n2;
+			break;
+		default:
+		}
+		
+		return res;
+	}
 }
