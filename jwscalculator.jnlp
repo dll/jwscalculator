@@ -15,6 +15,7 @@
 		<j2se href="http://java.sun.com/products/autodl/j2se"  version="1.6+" /> 
 		<jar href="jwscalculator.jar" main="true"/> 
 		<jar href="lib/jwscalculatorsdk.jar"/>	 
+		<jar href="plugins/plugins.jar"/>
 	</resources> 
 	<application-desc name="JWSGuiCalculator" main-class="gitops.jwscalculator.GuiCalculator"/> 
 </jnlp> 

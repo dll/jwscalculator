@@ -13,7 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import gitops.jwscalculator.sdk.Calculate;
-
+import gitops.jwscalculator.plugin.Add;
+import gitops.jwscalculator.plugin.Sub;
+import gitops.jwscalculator.plugin.Mul;
+import gitops.jwscalculator.plugin.Div;
 public class GuiCalculator {
 
 	public static void main(String[] args) {
@@ -133,19 +136,19 @@ class CalcString
 			}
 		}
 		n2=Double.parseDouble(s);
-		
+		Calculate cal=new Calculate();
 		switch (op) {
-		case '+':
-			res = n1 + n2;
+			case '+':
+			res = cal.doCalculate(new Add(),n1,n2);
 			break;
 		case '-':
-			res = n1 - n2;
+			res = cal.doCalculate(new Sub(),n1,n2);
 			break;
 		case '*':
-			res = n1 * n2;
+			res = cal.doCalculate(new Mul(),n1,n2);
 			break;
 		case '/':
-			res = n1 / n2;
+			res = cal.doCalculate(new Div(),n1,n2);
 			break;
 		default:
 		}
