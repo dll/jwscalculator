@@ -47,12 +47,44 @@ class CalculatorUI extends JFrame
 	private JButton bt44=new JButton("+");
 	JButton jb[]={bt11,bt12,bt13,bt14,bt21,bt22,bt23,bt24,
 		bt31,bt32,bt33,bt34,bt41,bt42,bt43,bt44};
-	
+		class MyHandler implements ActionListener
+		{
+			String str="";
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JButton source=(JButton) e.getSource();
+				
+				if(source==bt43)
+				{
+					//str=str+"= "+CalcString.getRes(str);
+					str=str+3;
+					textField.setText(str);
+					
+					int res=JOptionPane.showConfirmDialog(panel, "Calculated, Goon ?", "",JOptionPane.YES_NO_OPTION);
+					if(res==JOptionPane.YES_OPTION)
+					{
+						str="";
+						textField.setText("0");
+					}
+					else
+						System.exit(0);
+						
+				}
+				else
+				{
+					str=str+source.getText();		
+					textField.setText(str);
+				}	
+			}	
+		}
 	
 	public CalculatorUI(String title)
 	{
 		super(title);
 		this.ComponentInit();
+		MyHandler myHandler=new MyHandler();
+		this.ListenerAdd(myHandler);
 		this.setLocation(300, 200);
 		this.setSize(600, 450);
 	}
@@ -73,5 +105,10 @@ class CalculatorUI extends JFrame
 		}
 		
 	}
-	
+	private void ListenerAdd(MyHandler myHandler)
+	{
+		for(int i=0;i<16;i++){
+			jb[i].addActionListener(myHandler);
+		}
+	}	
 }

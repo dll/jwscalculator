@@ -45,3 +45,5 @@ rem 本地测试
 java -jar jwscalculator.jar
 cd ..
 rem rd /s /q target
+rem .gitignore
+rem target/
