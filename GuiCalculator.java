@@ -17,10 +17,11 @@ import gitops.jwscalculator.plugin.Add;
 import gitops.jwscalculator.plugin.Sub;
 import gitops.jwscalculator.plugin.Mul;
 import gitops.jwscalculator.plugin.Div;
+import gitops.jwscalculator.plugin.Avg;
 public class GuiCalculator {
 
 	public static void main(String[] args) {
-		CalculatorUI ui=new CalculatorUI("VSCode GitPlugin GuiCalculator");
+		CalculatorUI ui=new CalculatorUI("JWS GuiCalculator");
 		ui.setVisible(true);
 		ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -31,7 +32,7 @@ class CalculatorUI extends JFrame
 {
 	private JTextField textField=new JTextField("0");
 	
-	private JPanel panel=new JPanel(new GridLayout(4,4));
+	private JPanel panel=new JPanel(new GridLayout(5,4));
 	private JButton bt11=new JButton("7");
 	private JButton bt12=new JButton("8");
 	private JButton bt13=new JButton("9");
@@ -48,8 +49,12 @@ class CalculatorUI extends JFrame
 	private JButton bt42=new JButton(".");
 	private JButton bt43=new JButton("=");
 	private JButton bt44=new JButton("+");
+	private JButton bt51=new JButton("A");
+	private JButton bt52=new JButton("%");
+	private JButton bt53=new JButton("^");
+	private JButton bt54=new JButton("!");
 	JButton jb[]={bt11,bt12,bt13,bt14,bt21,bt22,bt23,bt24,
-		bt31,bt32,bt33,bt34,bt41,bt42,bt43,bt44};
+		bt31,bt32,bt33,bt34,bt41,bt42,bt43,bt44,bt51,bt52,bt53,bt54};
 		class MyHandler implements ActionListener
 		{
 			String str="";
@@ -101,7 +106,7 @@ class CalculatorUI extends JFrame
 		
 		this.add(panel,BorderLayout.CENTER);
 		panel.setPreferredSize(new Dimension(300,350));
-		for(int i=0;i<16;i++){
+		for(int i=0;i<20;i++){
 			jb[i].setFont(new Font("楷体",Font.BOLD,32));
 			panel.add(jb[i]);
 		}
@@ -109,7 +114,7 @@ class CalculatorUI extends JFrame
 	}
 	private void ListenerAdd(MyHandler myHandler)
 	{
-		for(int i=0;i<16;i++){
+		for(int i=0;i<20;i++){
 			jb[i].addActionListener(myHandler);
 		}
 	}	
@@ -124,7 +129,7 @@ class CalcString
 		
 		for(int i=0;i<str.length();i++)
 		{
-			if(str.charAt(i)!='+'&&str.charAt(i)!='-'&&str.charAt(i)!='*'&&str.charAt(i)!='/')
+			if(str.charAt(i)!='+'&&str.charAt(i)!='-'&&str.charAt(i)!='*'&&str.charAt(i)!='/' &&str.charAt(i)!='A' )
 			{
 				s=s+str.charAt(i);
 			}
@@ -149,6 +154,9 @@ class CalcString
 			break;
 		case '/':
 			res = cal.doCalculate(new Div(),n1,n2);
+			break;
+		case 'A':
+			res = cal.doCalculate(new Avg(),n1,n2);
 			break;
 		default:
 		}
