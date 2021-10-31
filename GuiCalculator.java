@@ -20,6 +20,7 @@ import gitops.jwscalculator.plugin.Div;
 import gitops.jwscalculator.plugin.Avg;
 import gitops.jwscalculator.plugin.Mod;
 import gitops.jwscalculator.plugin.Pow;
+import gitops.jwscalculator.plugin.Fac;
 public class GuiCalculator {
 
 	public static void main(String[] args) {
@@ -132,7 +133,7 @@ class CalcString
 		for(int i=0;i<str.length();i++)
 		{
 			if(str.charAt(i)!='+'&&str.charAt(i)!='-'&&str.charAt(i)!='*'&&str.charAt(i)!='/' &&str.charAt(i)!='A' 
-				&&str.charAt(i)!='%'&&str.charAt(i)!='^')
+				&&str.charAt(i)!='%'&&str.charAt(i)!='^'&&str.charAt(i)!='!')
 			{
 				s=s+str.charAt(i);
 			}
@@ -166,6 +167,9 @@ class CalcString
 			break;
 		case '^':
 			res = cal.doCalculate(new Pow(),n1,n2);
+			break;
+		case '!':
+			res = cal.doCalculate(new Fac(),n1,n2);
 			break;
 		default:
 		}
