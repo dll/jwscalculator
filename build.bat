@@ -35,12 +35,6 @@ jarsigner -keystore myKeystore.store target\plugins\plugins.jar mykey -storepass
 jarsigner -keystore myKeystore.store target\jwscalculator.jar mykey -storepass mystorepass
 echo keystore "file:myKeystore.store","PKCS12"; grant signedBy "mykey" { permission java.io.FilePermission"<<ALL FILES>>","read";};>myKeystore.policy
 rem 打包jwscalculator.war
-copy mykeystore.policy target
-copy mykeystore.store target
-copy mykeystore.cert target
-del mykeystore.policy
-del mykeystore.store
-del mykeystore.cert
 copy index.html target
 copy jwscalculator.jnlp target
 cd target
