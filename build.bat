@@ -30,6 +30,7 @@ jarsigner -keystore myKeystore.store target\plugins\plugins.jar mykey -storepass
 jarsigner -keystore myKeystore.store target\jwscalculator.jar mykey -storepass mystorepass
 echo keystore "file:myKeystore.store","PKCS12"; grant signedBy "mykey" { permission java.io.FilePermission"<<ALL FILES>>","read";};>myKeystore.policy
 rem 打包jwscalculator.war
+del myKeystore.*
 copy index.html target
 copy jwscalculator.jnlp target
 cd target
@@ -39,5 +40,3 @@ copy jwscalculator.war "C:\Program Files\Apache Software Foundation\Tomcat 9.0\w
 java -jar jwscalculator.jar
 cd ..
 rem rd /s /q target
-rem .gitignore
-rem target/
